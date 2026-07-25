@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CareBloom — Senior Care Marketplace</title>
+  <meta name="description" content="Explore CareBloom, Ontario's first digital marketplace and operating system for senior care. Discover our scalable business model, interactive unit economics, AI matching engine, and compliance frameworks.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-icon">CB</div>
+        <div class="brand-info">
+          <h2>CareBloom</h2>
+          <span>Senior care marketplace</span>
+        </div>
+      </div>
+      
+      <nav>
+        <ul class="nav-links">
+          <li class="nav-item active">
+            <button data-tab="marketplace">Find care</button>
+          </li>
+          <li class="nav-item">
+            <button data-tab="strategy">Strategy</button>
+          </li>
+          <li class="nav-item">
+            <button data-tab="simulator">Revenue</button>
+          </li>
+          <li class="nav-item">
+            <button data-tab="matcher">Care matcher</button>
+          </li>
+          <li class="nav-item">
+            <button data-tab="dashboard">Dashboard</button>
+          </li>
+          <li class="nav-item">
+            <button data-tab="compliance">Compliance</button>
+          </li>
+          <li class="nav-item">
+            <button data-tab="seo">SEO content</button>
+          </li>
+          <li class="nav-item">
+            <button data-tab="billing">Billing</button>
+          </li>
+          <li class="nav-item">
+            <button data-tab="provider-center">Providers</button>
+          </li>
+        </ul>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <div class="theme-switch">
+          <span class="theme-switch-label">Dark mode</span>
+          <label class="switch">
+            <input type="checkbox" id="theme-toggle-chk">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+    </aside>
+    
+    <!-- MAIN INTERACTIVE PORTAL -->
+    <main class="main-content">
+      
+      <!-- TOP STATUS HEADER -->
+      <header class="top-header">
+        <div class="header-title">
+          <h1>Find trusted senior care</h1>
+          <p>Connect with verified caregivers across Ontario.</p>
+        </div>
+        <div class="top-badge-container">
+          <span class="badge badge-primary">Ontario launch</span>
+        </div>
+      </header>
+
+      <!-- MARKETPLACE: FAMILY CARE REQUEST TO CONFIRMED VISIT -->
+      <section id="marketplace-tab" class="tab-panel active">
+        <div class="marketplace-hero">
+          <div>
+            <span class="eyebrow">Care that fits your family</span>
+            <h2>Find a verified caregiver in minutes.</h2>
+            <p>Tell us what support is needed. CareBloom ranks qualified local professionals by care needs, language, location, availability, and trust checks.</p>
+            <div class="trust-row">
+              <span>✓ Vulnerable Sector Screened</span>
+              <span>✓ Transparent hourly rates</span>
+              <span>✓ Shared family updates</span>
+            </div>
+          </div>
+          <div class="hero-stat-card">
+            <span>CareBloom match confidence</span>
+            <strong>Trust-first</strong>
+            <p>Every recommended provider shows the reasons they fit your request.</p>
+          </div>
+        </div>
+
+        <div class="marketplace-layout">
+          <form id="care-request-form" class="care-request-card">
+            <div class="section-heading">
+              <span class="step-badge">1</span>
+              <div><h3>What kind of care do you need?</h3><p>We only use these details to make a care match in this demo.</p></div>
+            </div>
+            <div class="form-grid">
+              <label>Care recipient name
+                <input id="request-recipient" required maxlength="80" placeholder="e.g. Margaret P.">
+              </label>
+              <label>City
+                <select id="request-city" required>
+                  <option value="Toronto">Toronto</option>
+                  <option value="Mississauga">Mississauga</option>
+                  <option value="Oakville">Oakville</option>
+                  <option value="Richmond Hill">Richmond Hill</option>
+                </select>
+              </label>
+              <label>Support needed
+                <select id="request-skill" required>
+                  <option value="Dementia Care">Dementia care</option>
+                  <option value="Wound Care">Wound care</option>
+                  <option value="Meal Prep">Meal preparation</option>
+                  <option value="Mobility Assistance">Mobility assistance</option>
+                  <option value="Companionship">Companionship</option>
+                </select>
+              </label>
+              <label>Preferred language
+                <select id="request-language">
+                  <option value="English">English</option>
+                  <option value="French">French</option>
+                  <option value="Punjabi">Punjabi</option>
+                  <option value="Cantonese">Cantonese</option>
+                  <option value="Arabic">Arabic</option>
+                </select>
+              </label>
+              <label>First visit date
+                <input id="request-date" type="date" required>
+              </label>
+              <label>Visit length
+                <select id="request-hours"><option value="2">2 hours</option><option value="3.5" selected>3.5 hours</option><option value="4">4 hours</option><option value="6">6 hours</option></select>
+              </label>
+            </div>
+            <label class="full-width">Anything important for the caregiver to know? <span class="optional">Optional</span>
+              <textarea id="request-notes" rows="3" maxlength="500" placeholder="Mobility needs, routines, or preferences. Avoid sharing sensitive health details in this demo."></textarea>
+            </label>
+            <label class="consent-row"><input id="request-consent" type="checkbox" required> <span>I understand this is a product demo and no real care visit is being booked.</span></label>
+            <button class="btn-primary" type="submit">See verified matches <span aria-hidden="true">→</span></button>
+          </form>
+
+          <aside class="request-summary-card">
+            <span class="step-badge">2</span>
+            <h3>How matching works</h3>
+            <ol class="matching-steps">
+              <li><strong>Safety first</strong><span>Only vetted professionals are eligible.</span></li>
+              <li><strong>Care fit</strong><span>Skills, location, language, ratings, and price inform the score.</span></li>
+              <li><strong>Your choice</strong><span>Review profiles and confirm the visit before anything is scheduled.</span></li>
+            </ol>
+            <div class="privacy-note">🔒 For a real launch, PHIPA-compliant secure storage, consent, and clinical escalation workflows must be implemented server-side.</div>
+          </aside>
+        </div>
+
+        <section id="marketplace-results" class="marketplace-results" hidden aria-live="polite">
+          <div class="results-topline">
+            <div><span class="eyebrow">Step 3</span><h3>Your recommended care team</h3><p id="request-match-summary"></p></div>
+            <button id="btn-edit-request" class="btn-secondary" type="button">Edit request</button>
+          </div>
+          <div id="request-provider-results" class="request-provider-grid"></div>
+        </section>
+
+        <section id="confirmed-visit" class="confirmed-visit" hidden aria-live="polite"></section>
+      </section>
+      
+      <!-- TAB 1: STRATEGY & BLUEPRINT -->
+      <section id="strategy-tab" class="tab-panel">
+        <div class="strategy-grid">
+          
+          <div class="intro-lead-card">
+            <h2>The Opportunity: Canada's Aging Crisis</h2>
+            <p>
+              By 2030, over 20% of the Canadian population will be seniors. The current home care ecosystem is broken, fragmented, and heavily reliant on manual staffing agencies charging 40%+ markups. CareBloom builds the tech infrastructure to connect supply and demand seamlessly, creating a $100M+ valuation company in 10 years.
+            </p>
+            <div class="card-features-row">
+              <div class="feature-stat">
+                <h3>$5.2B</h3>
+                <p>Ontario Home Care Market Size</p>
+              </div>
+              <div class="feature-stat">
+                <h3>85%</h3>
+                <p>Seniors Wishing to Age in Place</p>
+              </div>
+              <div class="feature-stat">
+                <h3>6x ARR</h3>
+                <p>Projected Startup Valuation Multiple</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="strategy-pillars-container">
+            
+            <div class="strategy-card">
+              <h3><span>💡</span> Marketplace Philosophy</h3>
+              <p>We do not employ hundreds of caregivers, eliminating payroll overhead, union issues, and staffing liabilities. We build the operating system (SaaS) that provides independent PSWs, nurses, and therapists with billing tools, schedule optimization, and GPS proof-of-visit, while providing families absolute trust and choice.</p>
+            </div>
+            
+            <div class="strategy-card maple">
+              <h3><span>🍁</span> Launch Market & Geography</h3>
+              <p>Our launch strategy targets four high-density, affluent communities in Ontario with aging populations and high private-pay capacities:</p>
+              <ul>
+                <li><strong>Toronto:</strong> Large urban market, high concentration of medical partners.</li>
+                <li><strong>Mississauga:</strong> Massive suburbs, strong commuter population.</li>
+                <li><strong>Oakville:</strong> Affluent families, high average booking values.</li>
+                <li><strong>Richmond Hill:</strong> Dense multi-generational households, diverse language needs.</li>
+              </ul>
+            </div>
+            
+            <div class="strategy-card gold">
+              <h3><span>💰</span> Revenue Stream Optimization</h3>
+              <p>We leverage a multi-layered monetization strategy to maximize customer lifetime value (LTV) and platform stability:</p>
+              <ul>
+                <li><strong>Client Service Fee (15%):</strong> Value added to families for coordination, security, and verification.</li>
+                <li><strong>Provider Platform Fee (5%):</strong> Paid by independent caregivers for matching and invoicing tools.</li>
+                <li><strong>Provider OS SaaS Subscription:</strong> Premium features (e.g., automated tax reporting, optimization).</li>
+                <li><strong>Enterprise Hospital Licensing:</strong> APIs for discharge planning integration.</li>
+              </ul>
+            </div>
+            
+            <div class="strategy-card">
+              <h3><span>🤖</span> AI-Driven Efficiency</h3>
+              <p>AI acts as a multiplier to eliminate manual admin overhead:</p>
+              <ul>
+                <li><strong>Matching Engine:</strong> Predicts best caregiver fit using location, credentials, language, and ratings.</li>
+                <li><strong>Note Summarization:</strong> Translates complex daily logs written by caregivers into simple summaries for family members.</li>
+                <li><strong>Care Gap Detection:</strong> Flags changes in mobility or diet and suggests appropriate therapies automatically.</li>
+              </ul>
+            </div>
+            
+          </div>
+          
+        </div>
+      </section>
+      
+      <!-- TAB 2: REVENUE & FINANCIAL SIMULATOR -->
+      <section id="simulator-tab" class="tab-panel">
+        <div class="simulator-layout">
+          
+          <!-- INPUT CONTROLS -->
+          <div class="control-panel">
+            <h3>Simulator Adjustments</h3>
+            
+            <div class="control-group">
+              <label for="sim-clients">Active Families (Year 1) <span id="val-clients">1,200</span></label>
+              <input type="range" id="sim-clients" min="100" max="5000" step="50" value="1200">
+            </div>
+            
+            <div class="control-group">
+              <label for="sim-visitsPerMonth">Bookings / Month per Family <span id="val-visitsPerMonth">6</span></label>
+              <input type="range" id="sim-visitsPerMonth" min="2" max="20" step="1" value="6">
+            </div>
+            
+            <div class="control-group">
+              <label for="sim-avgBillRate">Hourly Bill Rate (CAD) <span id="val-avgBillRate">$38</span></label>
+              <input type="range" id="sim-avgBillRate" min="25" max="90" step="1" value="38">
+            </div>
+            
+            <div class="control-group">
+              <label for="sim-avgHoursPerVisit">Avg. Hours per Booking <span id="val-avgHoursPerVisit">3.5h</span></label>
+              <input type="range" id="sim-avgHoursPerVisit" min="1" max="8" step="0.5" value="3.5">
+            </div>
+            
+            <div class="control-group">
+              <label for="sim-commissionClient">Client Service Fee <span id="val-commissionClient">15%</span></label>
+              <input type="range" id="sim-commissionClient" min="5" max="25" step="1" value="15">
+            </div>
+            
+            <div class="control-group">
+              <label for="sim-commissionProvider">Provider Platform Fee <span id="val-commissionProvider">5%</span></label>
+              <input type="range" id="sim-commissionProvider" min="2" max="15" step="1" value="5">
+            </div>
+            
+            <div class="control-group">
+              <label for="sim-activeProviders">Active Caregivers <span id="val-activeProviders">350</span></label>
+              <input type="range" id="sim-activeProviders" min="50" max="2000" step="25" value="350">
+            </div>
+            
+            <div class="control-group">
+              <label for="sim-providerSaaSPrice">Monthly Caregiver SaaS Fee <span id="val-providerSaaSPrice">$29</span></label>
+              <input type="range" id="sim-providerSaaSPrice" min="0" max="99" step="5" value="29">
+            </div>
+          </div>
+          
+          <!-- SIMULATION OUTPUTS -->
+          <div class="output-panel">
+            
+            <div class="metrics-summary-row">
+              <div class="metric-card">
+                <p>Monthly Recurring Revenue (MRR)</p>
+                <h2 id="val-mrr">$0</h2>
+              </div>
+              <div class="metric-card">
+                <p>Annual Recurring Revenue (ARR)</p>
+                <h2 id="val-arr">$0</h2>
+              </div>
+              <div class="metric-card highlight">
+                <p>Projected Startup Valuation (6x)</p>
+                <h2 id="val-valuation">$0</h2>
+              </div>
+            </div>
+            
+            <div class="table-container">
+              <div style="padding: 1.25rem 1.5rem; font-weight: 700; font-family: var(--font-display); font-size: 1.1rem; border-bottom: 1px solid var(--card-border);">
+                5-Year Regional Rollout Projections (Compounding Scaling Model)
+              </div>
+              <table id="projections-table">
+                <thead>
+                  <tr>
+                    <th>Year</th>
+                    <th>Active Families</th>
+                    <th>Active Caregivers</th>
+                    <th>Gross Booking Value (GMV)</th>
+                    <th>CareBloom ARR</th>
+                    <th>Projected Valuation</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Filled dynamically by app.js -->
+                </tbody>
+              </table>
+            </div>
+            
+            <div style="background-color: var(--accent-forest-light); color: var(--accent-forest); padding: 1rem; border-radius: var(--border-radius-sm); border: 1px solid var(--accent-forest); font-size: 0.85rem; font-weight: 600;">
+              💡 <strong>Co-Founder Strategy Note:</strong> Achieving Year 5 scale in Mississauga, Toronto, Oakville, and Richmond Hill translates to capturing roughly 4.2% of the local addressable senior home care market, positioning CareBloom for a $100M+ valuation within Ontario alone before expanding nationwide.
+            </div>
+            
+          </div>
+          
+        </div>
+      </section>
+      
+      <!-- TAB 3: AI MATCHING ENGINE DEMO -->
+      <section id="matcher-tab" class="tab-panel">
+        <div class="matcher-container">
+          
+          <!-- FILTERS -->
+          <div class="filter-panel">
+            <h3 class="filter-title">Matching Criteria</h3>
+            
+            <div class="filter-group">
+              <label for="match-city">Senior's Location</label>
+              <select id="match-city">
+                <option value="All">All Cities</option>
+                <option value="Mississauga">Mississauga</option>
+                <option value="Toronto">Toronto</option>
+                <option value="Oakville">Oakville</option>
+                <option value="Richmond Hill">Richmond Hill</option>
+              </select>
+            </div>
+            
+            <div class="filter-group">
+              <label for="match-skill">Specialized Care Needed</label>
+              <select id="match-skill">
+                <option value="All">All Needs</option>
+                <option value="Dementia Care">Dementia Care</option>
+                <option value="Wound Care">Wound Care</option>
+                <option value="Meal Prep">Meal Preparation</option>
+                <option value="Mobility Assistance">Mobility Assistance</option>
+                <option value="Home Safety Assessment">Home Safety Assessment</option>
+              </select>
+            </div>
+            
+            <div class="filter-group">
+              <label for="match-lang">Language Preferred</label>
+              <select id="match-lang">
+                <option value="All">All Languages</option>
+                <option value="English">English Only</option>
+                <option value="French">French</option>
+                <option value="Punjabi">Punjabi</option>
+                <option value="Cantonese">Cantonese</option>
+              </select>
+            </div>
+            
+            <button id="btn-run-match" class="btn-primary" style="margin-top: 1rem;">Run AI Matcher</button>
+          </div>
+          
+          <!-- SEARCH RESULTS -->
+          <div>
+            <div class="match-results-header">
+              <h3 style="font-size: 1.25rem;">Provider Recommendations</h3>
+              <span id="results-count" style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700;">Ranked by compatibility percentage</span>
+            </div>
+            
+            <div id="provider-results" class="provider-cards-grid">
+              <!-- Cards rendered dynamically by app.js -->
+            </div>
+          </div>
+          
+        </div>
+      </section>
+      
+      <!-- TAB 4: SHARED FAMILY DASHBOARD -->
+      <section id="dashboard-tab" class="tab-panel">
+        <div class="dashboard-layout">
+          
+          <!-- CALENDAR AND DETAILS -->
+          <div style="display: flex; flex-direction: column; gap: 2rem;">
+            <div class="dashboard-panel">
+              <h3>
+                <span>📅 Care Calendar</span>
+                <span style="font-size: 0.8rem; color: var(--accent-forest); font-weight: 700;">Sync Active: 3 family members</span>
+              </h3>
+              
+              <div id="care-calendar-grid" class="care-calendar">
+                <!-- Days populated by app.js -->
+              </div>
+              
+              <div id="calendar-selected-details" style="background-color: var(--bg-secondary); padding: 1rem; border-radius: var(--border-radius-sm); border: 1px solid var(--card-border); font-size: 0.85rem; font-weight: 600;">
+                Click on highlighted calendar dates (9, 12, 15, 19, 22, 26) to view logged care records.
+              </div>
+            </div>
+            
+            <!-- DIGITAL CARE PLAN EDITOR -->
+            <div class="dashboard-panel">
+              <h3>
+                <span>📋 Digital Care Plan</span>
+                <span style="font-size: 0.8rem; color: var(--accent-maple); font-weight: 700;">Live Sync Enabled</span>
+              </h3>
+              <form id="care-plan-form" style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+                  <div class="filter-group" style="margin: 0;">
+                    <label for="plan-senior-name">Senior's Full Name</label>
+                    <input type="text" id="plan-senior-name" value="Margaret Poudyal" style="padding: 0.5rem 0.75rem; border: 1px solid var(--card-border); border-radius: var(--border-radius-sm); background-color: var(--bg-secondary); color: var(--text-primary); font-family: var(--font-body); font-size: 0.85rem; width: 100%;">
+                  </div>
+                  <div class="filter-group" style="margin: 0;">
+                    <label for="plan-emergency">Emergency Contact (Phone)</label>
+                    <input type="text" id="plan-emergency" value="John Poudyal (416-555-0192)" style="padding: 0.5rem 0.75rem; border: 1px solid var(--card-border); border-radius: var(--border-radius-sm); background-color: var(--bg-secondary); color: var(--text-primary); font-family: var(--font-body); font-size: 0.85rem; width: 100%;">
+                  </div>
+                </div>
+                
+                <div class="filter-group" style="margin: 0;">
+                  <label for="plan-meds">Active Medication Schedule</label>
+                  <textarea id="plan-meds" rows="2" style="padding: 0.5rem 0.75rem; border: 1px solid var(--card-border); border-radius: var(--border-radius-sm); background-color: var(--bg-secondary); color: var(--text-primary); font-family: var(--font-body); font-size: 0.85rem; width: 100%; resize: vertical;">1. Metformin - 500mg (8:00 AM with breakfast)&#10;2. Lisinopril - 10mg (8:00 PM before sleep)</textarea>
+                </div>
+                
+                <div class="filter-group" style="margin: 0;">
+                  <label for="plan-diet">Dietary & Mobility Notes</label>
+                  <textarea id="plan-diet" rows="2" style="padding: 0.5rem 0.75rem; border: 1px solid var(--card-border); border-radius: var(--border-radius-sm); background-color: var(--bg-secondary); color: var(--text-primary); font-family: var(--font-body); font-size: 0.85rem; width: 100%; resize: vertical;">Gluten-free diet. Prefers walker for outdoor commutes. Stand-by assistance needed for bathing.</textarea>
+                </div>
+                
+                <button type="button" id="btn-save-care-plan" class="btn-primary" style="padding: 0.5rem 1rem; font-size: 0.85rem;">Save Digital Care Plan</button>
+              </form>
+            </div>
+          </div>
+          
+          <!-- MAP TRACKER & LIVE STATUS -->
+          <div style="display: flex; flex-direction: column; gap: 2rem;">
+            <div class="dashboard-panel">
+              <h3>
+                <span>📍 Live Visit Tracker</span>
+                <span class="badge badge-secondary" style="font-size: 0.65rem;">Active Visit</span>
+              </h3>
+              
+              <div class="gps-tracking-box">
+                <div class="map-canvas-simulated">
+                  <!-- Road Grid -->
+                  <div class="map-road road-h" style="top: 100px;"></div>
+                  <div class="map-road road-h" style="top: 200px;"></div>
+                  <div class="map-road road-v" style="left: 100px;"></div>
+                  <div class="map-road road-v" style="left: 200px;"></div>
+                  
+                  <!-- Markers -->
+                  <div id="target-marker" class="marker-target">🏠</div>
+                  <div id="provider-marker" class="marker-provider"></div>
+                </div>
+                
+                <div class="gps-info-strip">
+                  <div>
+                    <strong style="color: var(--text-muted); display: block; font-size: 0.75rem;">CAREGIVER STATUS</strong>
+                    <span id="gps-live-status" style="font-weight: 700; color: var(--accent-maple);">Initializing commute...</span>
+                  </div>
+                  <div style="text-align: right;">
+                    <strong style="color: var(--text-muted); display: block; font-size: 0.75rem;">GPS PROXIMITY</strong>
+                    <span id="gps-live-distance" style="font-weight: 700; color: var(--text-primary);">Calculating...</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted); line-height: 1.4;">
+                🛡️ <strong>GPS Visit Verification:</strong> Utilizing our mobile caregiver app, providers must check in within 50 meters of the senior's residence. The CareBloom protocol logs verification metadata on blockchain-inspired audit trails to eliminate billing fraud.
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </section>
+      
+      <!-- TAB 5: TRUST & COMPLIANCE -->
+      <section id="compliance-tab" class="tab-panel">
+        <div class="strategy-grid">
+          
+          <div class="strategy-card">
+            <h3><span>🔒</span> Canadian Privacy Regulations (PIPEDA & PHIPA)</h3>
+            <p>As a senior care operating system, ensuring client and patient data security is paramount. The platform implements rigorous privacy guardrails:</p>
+            <div style="margin-top: 1.5rem;">
+              
+              <div class="checklist-item">
+                <div class="checklist-icon">✓</div>
+                <div class="checklist-content">
+                  <h5>PHIPA Compliance (Ontario)</h5>
+                  <p>Client records and daily care logs are classified as Personal Health Information (PHI). We adhere to PHIPA regulations, providing audit trails for every access event.</p>
+                </div>
+              </div>
+              
+              <div class="checklist-item">
+                <div class="checklist-icon">✓</div>
+                <div class="checklist-content">
+                  <h5>Canadian Data Residency</h5>
+                  <p>All sensitive database clusters are hosted exclusively within AWS Canada (Central) region to guarantee that zero client health details leave Canadian borders.</p>
+                </div>
+              </div>
+              
+              <div class="checklist-item">
+                <div class="checklist-icon">✓</div>
+                <div class="checklist-content">
+                  <h5>End-to-End Encryption</h5>
+                  <p>All client communications, care plans, and financial details are encrypted using AES-256 at rest and TLS 1.3 in transit.</p>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="strategy-card maple">
+            <h3><span>🛡️</span> Trust & Safety Framework</h3>
+            <p>How we ensure CareBloom is the most trusted care solution in Ontario:</p>
+            <div style="margin-top: 1.5rem;">
+              
+              <div class="checklist-item">
+                <div class="checklist-icon">★</div>
+                <div class="checklist-content">
+                  <h5>Upfront Vulnerable Sector Screening (VSS)</h5>
+                  <p>All matching providers must undergo and supply an approved VSS police background check from their regional police service before being listable on the platform.</p>
+                </div>
+              </div>
+              
+              <div class="checklist-item">
+                <div class="checklist-icon">★</div>
+                <div class="checklist-content">
+                  <h5>Credential Verification Pipeline</h5>
+                  <p>PSWs and nurses must submit their college registry status (e.g., CNO registration numbers) which is validated against public registries weekly by our compliance team.</p>
+                </div>
+              </div>
+              
+              <div class="checklist-item">
+                <div class="checklist-icon">★</div>
+                <div class="checklist-content">
+                  <h5>Dual-sided Ratings & Peer Reviews</h5>
+                  <p>Both families and providers rate each booking. Caregivers maintaining less than a 4.5 rating undergo performance audits, ensuring high standards.</p>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          
+        </div>
+        
+        <!-- DYNAMIC COMPLIANCE DASHBOARD -->
+        <div class="compliance-dashboard" style="display: flex; flex-direction: column; gap: 2rem; margin-top: 2rem;">
+          <!-- Row 1: Consent Registry and Clinical Escalations -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+            <!-- CONSENT REGISTRY PANEL -->
+            <div class="dashboard-panel">
+              <h3><span>🔒</span> Dynamic Consent Registry</h3>
+              <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">
+                PHIPA requires families to have explicit control over their consent. Revoking consent instantly blocks database access to all client medical profiles and records.
+              </p>
+              <div class="filter-group">
+                <label for="consent-search-input">Search Patient Name</label>
+                <div style="display: flex; gap: 0.5rem;">
+                  <input type="text" id="consent-search-input" placeholder="e.g. Margaret Poudyal" style="padding: 0.5rem; border: 1px solid var(--card-border); border-radius: var(--border-radius-sm); background-color: var(--bg-secondary); color: var(--text-primary); font-family: var(--font-body); font-size: 0.85rem; flex: 1;">
+                  <button id="btn-consent-lookup" class="btn-primary" style="padding: 0.5rem 1rem; font-size: 0.85rem;" type="button">Look Up</button>
+                </div>
+              </div>
+              <div id="consent-status-box" style="margin-top: 1rem; padding: 1rem; border-radius: var(--border-radius-sm); background-color: var(--bg-secondary); border: 1px solid var(--card-border); font-size: 0.85rem; display: none;">
+                <!-- Populated dynamically -->
+              </div>
+              <div style="margin-top: 1rem;">
+                <h4 style="font-size: 0.9rem; margin-bottom: 0.5rem;">Registry Index</h4>
+                <table class="compliance-table" style="width: 100%; border-collapse: collapse; font-size: 0.8rem;">
+                  <thead>
+                    <tr style="border-bottom: 2px solid var(--card-border); text-align: left; font-weight: 700; color: var(--text-muted);">
+                      <th style="padding: 0.5rem 0;">Patient Name</th>
+                      <th style="padding: 0.5rem 0;">Status</th>
+                      <th style="padding: 0.5rem 0; text-align: right;">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="consent-registry-body">
+                    <!-- Populated dynamically -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
+            <!-- CLINICAL ESCALATIONS FEED -->
+            <div class="dashboard-panel">
+              <h3><span>🔴</span> Clinical Escalations & Alerts</h3>
+              <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">
+                The CareBloom symptom checking rules engine evaluates shift logs filed by caregivers. Checked critical conditions are instantly flagged here for coordinator response.
+              </p>
+              <div id="escalations-list-container" style="display: flex; flex-direction: column; gap: 1rem; max-height: 380px; overflow-y: auto; padding-right: 0.5rem;">
+                <!-- Populated dynamically -->
+                <div class="empty-state" style="text-align: center; color: var(--text-muted); padding: 2rem 0; font-size: 0.85rem; border: 1px dashed var(--card-border); border-radius: var(--border-radius-sm);">
+                  No active clinical escalations.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 2: PHIPA Immutable Audit Trails -->
+          <div class="dashboard-panel">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+              <div>
+                <h3><span>📜</span> PHIPA Security Audit Logs</h3>
+                <p style="font-size: 0.8rem; color: var(--text-muted);">
+                  Federal PIPEDA and Ontario PHIPA regulations require detailed access histories. Every read, write, and security block of Personal Health Information (PHI) is immutably logged on the server.
+                </p>
+              </div>
+              <button id="btn-refresh-audits" class="btn-secondary" style="padding: 0.4rem 0.8rem; font-size: 0.75rem;">Refresh Logs</button>
+            </div>
+            <div style="overflow-x: auto; max-height: 300px; overflow-y: auto;">
+              <table class="compliance-table" style="width: 100%; border-collapse: collapse; font-size: 0.8rem; text-align: left;">
+                <thead>
+                  <tr style="border-bottom: 2px solid var(--card-border); font-weight: 700; color: var(--text-muted);">
+                    <th style="padding: 0.6rem 0.5rem;">Log ID</th>
+                    <th style="padding: 0.6rem 0.5rem;">Timestamp</th>
+                    <th style="padding: 0.6rem 0.5rem;">Action</th>
+                    <th style="padding: 0.6rem 0.5rem;">Resource</th>
+                    <th style="padding: 0.6rem 0.5rem;">Details</th>
+                    <th style="padding: 0.6rem 0.5rem;">IP Address</th>
+                  </tr>
+                </thead>
+                <tbody id="audit-logs-table-body">
+                  <!-- Populated dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- TAB 6: AI SEO & CONTENT OPTIMIZER -->
+      <section id="seo-tab" class="tab-panel">
+        <div class="simulator-layout" style="grid-template-columns: 340px 1fr; gap: 2rem;">
+          
+          <!-- CONTROLS & GENERATOR FORM -->
+          <div class="control-panel" style="align-self: start;">
+            <h3>AI Content Engine</h3>
+            
+            <div class="filter-group">
+              <label for="seo-city">Target City</label>
+              <select id="seo-city">
+                <option value="Toronto">Toronto</option>
+                <option value="Mississauga">Mississauga</option>
+                <option value="Oakville">Oakville</option>
+                <option value="Richmond Hill">Richmond Hill</option>
+                <option value="London">London (Ontario)</option>
+                <option value="Ottawa">Ottawa</option>
+              </select>
+            </div>
+            
+            <div class="filter-group">
+              <label for="seo-keyword">Core Keyword Group</label>
+              <select id="seo-keyword">
+                <option value="homecare">Senior Home Care Services</option>
+                <option value="psw">Licensed PSW Caregivers</option>
+                <option value="nurse">Private Duty Nursing</option>
+                <option value="therapy">Rehabilitation & Therapy</option>
+              </select>
+            </div>
+            
+            <div class="filter-group">
+              <label for="seo-focus">Content Focus</label>
+              <select id="seo-focus">
+                <option value="landing">Local City Landing Page</option>
+                <option value="blog">Educational Care Blog Post</option>
+              </select>
+            </div>
+            
+            <div class="filter-group">
+              <label for="seo-tone">Brand Voice Tone</label>
+              <select id="seo-tone">
+                <option value="compassionate">Warm & Compassionate</option>
+                <option value="clinical">Clinical & Trustworthy</option>
+                <option value="academic">Informative & Policy-Focused</option>
+              </select>
+            </div>
+            
+            <button id="btn-generate-seo" class="btn-primary" style="margin-top: 1rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+              ⚡ Self-Generate Content
+            </button>
+          </div>
+          
+          <!-- WORKSPACE: WRITER & ANALYZER -->
+          <div style="display: grid; grid-template-columns: 1fr 340px; gap: 1.5rem;">
+            
+            <!-- LEFT: EDITOR PANEL -->
+            <div class="dashboard-panel" style="display: flex; flex-direction: column; gap: 1rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h4 style="font-family: var(--font-display); font-size: 1.1rem;">Interactive Content Workstation</h4>
+                <span id="editor-word-count" style="font-size: 0.8rem; color: var(--text-muted); font-weight: 700;">Words: 0</span>
+              </div>
+              
+              <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                <label for="editor-title" style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary);">SEO Page Title (Target: 50-60 characters)</label>
+                <input type="text" id="editor-title" placeholder="Enter SEO Optimized Title..." style="width: 100%; padding: 0.65rem 0.85rem; border: 1px solid var(--card-border); border-radius: var(--border-radius-sm); background-color: var(--bg-secondary); color: var(--text-primary); font-family: var(--font-body); font-size: 0.95rem; outline: none;">
+                <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-muted);">
+                  <span id="title-char-status">Too short</span>
+                  <span id="title-char-count">0 chars</span>
+                </div>
+              </div>
+              
+              <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                <label for="editor-desc" style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary);">Meta Description Tag (Target: 120-160 characters)</label>
+                <textarea id="editor-desc" rows="2" placeholder="Write page meta description for Google search snippets..." style="width: 100%; padding: 0.65rem 0.85rem; border: 1px solid var(--card-border); border-radius: var(--border-radius-sm); background-color: var(--bg-secondary); color: var(--text-primary); font-family: var(--font-body); font-size: 0.9rem; resize: vertical; outline: none;"></textarea>
+                <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-muted);">
+                  <span id="desc-char-status">Too short</span>
+                  <span id="desc-char-count">0 chars</span>
+                </div>
+              </div>
+              
+              <div style="display: flex; flex-direction: column; gap: 0.5rem; flex: 1;">
+                <label for="editor-content" style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary);">Main Article Content (Markdown / HTML Supported)</label>
+                <textarea id="editor-content" rows="12" placeholder="Write or paste your web copy here..." style="width: 100%; flex: 1; min-height: 250px; padding: 0.85rem 1rem; border: 1px solid var(--card-border); border-radius: var(--border-radius-sm); background-color: var(--bg-secondary); color: var(--text-primary); font-family: var(--font-body); font-size: 0.95rem; resize: vertical; outline: none; line-height: 1.6;"></textarea>
+              </div>
+            </div>
+            
+            <!-- RIGHT: LIVE AUDITOR & KEYWORD ANALYSIS -->
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+              
+              <!-- SEO SCORE CARD -->
+              <div class="dashboard-panel" style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; padding: 1.5rem;">
+                <h4 style="font-size: 1rem; width: 100%; text-align: left; border-bottom: 1px solid var(--card-border); padding-bottom: 0.5rem;">SEO Optimization Score</h4>
+                
+                <!-- Circular Indicator -->
+                <div style="position: relative; width: 120px; height: 120px; margin: 0.5rem 0;">
+                  <svg width="120" height="120" viewBox="0 0 120 120">
+                    <circle cx="60" cy="60" r="50" fill="none" stroke="var(--bg-ter)" stroke-width="10"></circle>
+                    <circle id="seo-score-circle" cx="60" cy="60" r="50" fill="none" stroke="var(--accent-maple)" stroke-width="10" stroke-dasharray="314.15" stroke-dashoffset="314.15" transform="rotate(-90 60 60)" style="transition: stroke-dashoffset 0.8s ease;"></circle>
+                  </svg>
+                  <div id="seo-score-text" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 2rem; font-weight: 800; color: var(--text-primary);">0%</div>
+                </div>
+                
+                <button id="btn-auto-optimize" class="btn-primary" style="background-color: var(--accent-forest); width: 100%; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                  ✨ Auto-Optimize Content
+                </button>
+              </div>
+              
+              <!-- OPTIMIZATION METRICS CHECKLIST -->
+              <div class="dashboard-panel" style="padding: 1.25rem;">
+                <h4 style="font-size: 0.95rem; margin-bottom: 0.75rem; border-bottom: 1px solid var(--card-border); padding-bottom: 0.5rem;">Real-time Checklist</h4>
+                
+                <div id="seo-checklist" style="display: flex; flex-direction: column; gap: 0.65rem;">
+                  <!-- Checkbox states populated dynamically by JS -->
+                </div>
+              </div>
+              
+              <!-- KEYWORD DENSITY METERS -->
+              <div class="dashboard-panel" style="padding: 1.25rem;">
+                <h4 style="font-size: 0.95rem; margin-bottom: 0.75rem; border-bottom: 1px solid var(--card-border); padding-bottom: 0.5rem;">Keyword Optimization</h4>
+                
+                <div id="seo-keywords-list" style="display: flex; flex-direction: column; gap: 0.85rem;">
+                  <!-- Dynamically populated keyword density meters -->
+                </div>
+              </div>
+              
+            </div>
+            
+          </div>
+        </div>
+      </section>
+      
+      <!-- TAB 7: BILLING & INVOICES -->
+      <section id="billing-tab" class="tab-panel">
+        <div class="simulator-layout" style="grid-template-columns: 320px 1fr; gap: 2rem;">
+          
+          <!-- INVOICE LIST PANEL -->
+          <div class="control-panel" style="align-self: start; padding: 1.25rem;">
+            <h3 style="font-size: 1.1rem; margin-bottom: 1rem; border-bottom: 1px solid var(--card-border); padding-bottom: 0.5rem;">Billing History</h3>
+            <div id="invoice-list-container" style="display: flex; flex-direction: column; gap: 0.75rem;">
+              <!-- Dynamic invoice list items injected by app.js -->
+            </div>
+          </div>
+          
+          <!-- DETAILED RECEIPT CARD -->
+          <div class="dashboard-panel" id="invoice-details-card" style="padding: 2.5rem; max-width: 720px; margin: 0 auto; box-shadow: var(--shadow-lg);">
+            <!-- Invoice Details injected dynamically by app.js -->
+            <div style="text-align: center; color: var(--text-muted); padding: 4rem 0;">
+              <span style="font-size: 3rem; display: block; margin-bottom: 1rem;">💳</span>
+              Select an invoice from the history list to view the itemized digital receipt.
+            </div>
+          </div>
+          
+        </div>
+      </section>
+      
+      <!-- TAB 8: PROVIDER CENTER -->
+      <section id="provider-center-tab" class="tab-panel">
+        <div class="simulator-layout" style="grid-template-columns: 380px 1fr; gap: 2rem;">
+          
+          <!-- CARE PROVIDER SETTINGS FORM -->
+          <div class="control-panel">
+            <h3>Caregiver Profile Settings</h3>
+            <form id="provider-edit-form" style="display: flex; flex-direction: column; gap: 1rem;">
+              
+              <div class="filter-group">
+                <label for="provider-select-edit">Select Profile to Manage</label>
+                <select id="provider-select-edit">
+                  <!-- Populated dynamically by app.js -->
+                </select>
+              </div>
+              
+              <div class="filter-group">
+                <label for="provider-edit-name">Caregiver Name</label>
+                <input type="text" id="provider-edit-name" style="width: 100%; padding: 0.5rem; border: 1px solid var(--card-border); border-radius: var(--border-radius-sm); background-color: var(--bg-secondary); color: var(--text-primary); font-family: var(--font-body); font-size: 0.85rem;">
+              </div>
+              
+              <div class="filter-group">
+                <label for="provider-edit-type">Role/Type</label>
+                <select id="provider-edit-type">
+                  <option value="PSW (Personal Support Worker)">PSW (Personal Support Worker)</option>
+                  <option value="Registered Practical Nurse (RPN)">Registered Practical Nurse (RPN)</option>
+                  <option value="Registered Nurse (RN)">Registered Nurse (RN)</option>
+                  <option value="Physiotherapist (PT)">Physiotherapist (PT)</option>
+                  <option value="Occupational Therapist (OT)">Occupational Therapist (OT)</option>
+                  <option value="Foot Care Nurse (LPN)">Foot Care Nurse (LPN)</option>
+                </select>
+              </div>
+              
+              <div class="filter-group">
+                <label for="provider-edit-city">Primary City</label>
+                <select id="provider-edit-city">
+                  <option value="Toronto">Toronto</option>
+                  <option value="Mississauga">Mississauga</option>
+                  <option value="Oakville">Oakville</option>
+                  <option value="Richmond Hill">Richmond Hill</option>
+                </select>
+              </div>
+              
+              <div class="control-group" style="margin: 0;">
+                <label for="provider-edit-rate">Hourly Rate (CAD) <span id="val-edit-rate">$35</span></label>
+                <input type="range" id="provider-edit-rate" min="25" max="90" step="1" value="35">
+              </div>
+              
+              <div class="filter-group">
+                <label>Verified Background Uploads</label>
+                <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.25rem;">
+                  <button type="button" class="btn-primary" style="background-color: var(--bg-tertiary); color: var(--text-primary); border: 1px solid var(--card-border); font-size: 0.75rem; padding: 0.4rem; border-radius: var(--border-radius-sm);" onclick="alert('VSS police screening successfully uploaded & queued for operator audit.')">Upload VSS Police Check</button>
+                  <button type="button" class="btn-primary" style="background-color: var(--bg-tertiary); color: var(--text-primary); border: 1px solid var(--card-border); font-size: 0.75rem; padding: 0.4rem; border-radius: var(--border-radius-sm);" onclick="alert('Clinical nursing registry credentials successfully uploaded.')">Upload CNO Certification</button>
+                </div>
+              </div>
+              
+              <button type="button" id="btn-save-provider-profile" class="btn-primary" style="margin-top: 0.5rem;">Save Changes & Sync Engine</button>
+            </form>
+          </div>
+          
+          <!-- PROVIDER METRICS & EARNINGS -->
+          <div style="display: flex; flex-direction: column; gap: 2rem;">
+            
+            <div class="metrics-summary-row">
+              <div class="metric-card">
+                <p>Est. Monthly Booking Hours</p>
+                <h2 style="color: var(--accent-forest);">84 Hrs</h2>
+              </div>
+              <div class="metric-card">
+                <p>Platform Platform Fee</p>
+                <h2 style="color: var(--accent-maple);">5%</h2>
+              </div>
+              <div class="metric-card highlight">
+                <p>Net Monthly Payout Est.</p>
+                <h2 id="provider-net-payout">$0</h2>
+              </div>
+            </div>
+            
+            <div class="dashboard-panel">
+              <h3>
+                <span>💻 CareBloom OS (SaaS Dashboard)</span>
+                <span class="badge badge-primary" style="font-size: 0.65rem;">Pro Member</span>
+              </h3>
+              
+              <div style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
+                <p>As a CareBloom provider utilizing our OS tools, you gain access to our administrative workspace to automate your independent senior care practice:</p>
+                <ul style="margin: 1rem 0; padding-left: 1.25rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+                  <li>✓ Optimized calendar scheduling</li>
+                  <li>✓ Auto-generated invoice compliance</li>
+                  <li>✓ Live GPS visit check-ins</li>
+                  <li>✓ Automated CRA tax log generation</li>
+                  <li>✓ In-app family direct-messaging</li>
+                  <li>✓ Featured search ranking boost</li>
+                </ul>
+                <div style="background-color: var(--accent-forest-light); color: var(--accent-forest); padding: 1rem; border-radius: var(--border-radius-sm); border: 1px solid var(--accent-forest); font-size: 0.8rem; font-weight: 600;">
+                  💡 <strong>Founder Valuation Context:</strong> Charging caregivers a minor $29/month subscription fee for this OS software unlocks a high-margin, predictable SaaS revenue stream alongside our core marketplace booking transaction commissions.
+                </div>
+              </div>
+            </div>
+
+            <!-- CAREGIVER SHIFT LOG SUBMISSION FORM -->
+            <div class="dashboard-panel" style="margin-top: 2rem;">
+              <h3>
+                <span>✍️ Caregiver Care Note & Shift Log</span>
+                <span class="badge badge-secondary" style="font-size: 0.65rem;">Submit Report</span>
+              </h3>
+              <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">
+                Submit shift records and check symptom indicators to sync logs with the server. Checking clinical flags will run the server-side escalation parser.
+              </p>
+              <form id="caregiver-shift-form" style="display: flex; flex-direction: column; gap: 0.75rem;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+                  <div class="filter-group" style="margin: 0;">
+                    <label for="shift-patient-name">Senior Name</label>
+                    <input type="text" id="shift-patient-name" value="Margaret Poudyal" required style="padding: 0.5rem; border: 1px solid var(--card-border); border-radius: var(--border-radius-sm); background-color: var(--bg-secondary); color: var(--text-primary); font-family: var(--font-body); font-size: 0.85rem; width: 100%;">
+                  </div>
+                  <div class="filter-group" style="margin: 0;">
+                    <label for="shift-caregiver-name">Caregiver Name</label>
+                    <input type="text" id="shift-caregiver-name" value="Sonia Gauthier" readonly required style="padding: 0.5rem; border: 1px solid var(--card-border); border-radius: var(--border-radius-sm); background-color: var(--bg-secondary); color: var(--text-muted); font-family: var(--font-body); font-size: 0.85rem; width: 100%;">
+                  </div>
+                </div>
+                
+                <div class="filter-group" style="margin: 0;">
+                  <label>Clinical Status Checklist (Select all observed flags)</label>
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.25rem; font-size: 0.8rem;">
+                    <label style="display: flex; align-items: center; gap: 0.4rem; font-weight: normal; cursor: pointer; color: var(--text-primary);">
+                      <input type="checkbox" id="symptom-fall" style="width: auto; margin-right: 0.2rem;"> Patient fell / mobility incident
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 0.4rem; font-weight: normal; cursor: pointer; color: var(--text-primary);">
+                      <input type="checkbox" id="symptom-fever" style="width: auto; margin-right: 0.2rem;"> High fever (&gt;38.5°C)
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 0.4rem; font-weight: normal; cursor: pointer; color: var(--text-primary);">
+                      <input type="checkbox" id="symptom-bp" style="width: auto; margin-right: 0.2rem;"> High blood pressure
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 0.4rem; font-weight: normal; cursor: pointer; color: var(--text-primary);">
+                      <input type="checkbox" id="symptom-meds" style="width: auto; margin-right: 0.2rem;"> Medication refusal / omission
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 0.4rem; font-weight: normal; cursor: pointer; color: var(--text-primary);">
+                      <input type="checkbox" id="symptom-confusion" style="width: auto; margin-right: 0.2rem;"> Sudden confusion / disorientation
+                    </label>
+                  </div>
+                </div>
+
+                <div class="filter-group" style="margin: 0;">
+                  <label for="shift-notes">Shift Summary & Observation Notes</label>
+                  <textarea id="shift-notes" rows="3" required placeholder="Describe senior's status, meals, activities, and details of any clinical symptoms flagged above." style="padding: 0.5rem; border: 1px solid var(--card-border); border-radius: var(--border-radius-sm); background-color: var(--bg-secondary); color: var(--text-primary); font-family: var(--font-body); font-size: 0.85rem; width: 100%; resize: vertical;"></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary" style="padding: 0.5rem 1rem; font-size: 0.85rem;">Submit Note & Run Rules Engine</button>
+              </form>
+            </div>
+            
+          </div>
+          
+        </div>
+      </section>
+      
+      <!-- FOOTER -->
+      <footer class="app-footer">
+        <p>&copy; 2026 CareBloom Technologies Inc. All rights reserved. Operating in Mississauga, Toronto, Oakville, and Richmond Hill.</p>
+        <p style="font-size: 0.7rem; margin-top: 0.5rem; color: var(--text-muted);">Designed for Compliance with PIPEDA, Ontario PHIPA, and Ministry of Health standards.</p>
+      </footer>
+      
+    </main>
+  </div>
+  
+  <!-- TOAST NOTIFICATION -->
+  <div id="app-toast" class="toast-notification"></div>
+  
+  <script src="app.js"></script>
+</body>
+</html>

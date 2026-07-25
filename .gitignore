@@ -1,0 +1,9 @@
+# Local data containing encrypted database, keys, and audit logs
+.data/
+
+# Dependencies
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db

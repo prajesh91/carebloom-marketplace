@@ -1,0 +1,9 @@
+{
+  "name": "carebloom-marketplace",
+  "version": "0.2.0",
+  "private": true,
+  "description": "CareBloom local marketplace MVP",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
