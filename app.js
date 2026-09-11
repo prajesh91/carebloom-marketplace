@@ -2119,9 +2119,20 @@ function setupLoginScreen() {
   const appContainer = document.querySelector('.app-container');
   if (!loginOverlay) return;
 
+  // Default to Super Admin (Me) for full product access on localhost
   if (!state.currentUser) {
-    loginOverlay.classList.remove('login-screen-hidden');
-    if (appContainer) appContainer.classList.add('role-hidden');
+    state.currentUser = DEMO_USERS['admin@carebridge.ca'];
+    state.activeRole = 'admin';
+    
+    if (loginOverlay) loginOverlay.classList.add('login-screen-hidden');
+    if (appContainer) appContainer.classList.remove('role-hidden');
+
+    const roleSelect = document.getElementById('role-select');
+    if (roleSelect) roleSelect.value = 'admin';
+
+    applyRolePermissions();
+    updateUserSessionHeader();
+    updateProviderSpecialtyChecklist();
   }
 }
 
