@@ -3,50 +3,122 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CareBloom — Senior Care Marketplace</title>
-  <meta name="description" content="Explore CareBloom, Ontario's first digital marketplace and operating system for senior care. Discover our scalable business model, interactive unit economics, AI matching engine, and compliance frameworks.">
+  <title>CareBridge — Canada's AI-Powered Senior Care Concierge Marketplace</title>
+  <meta name="description" content="Explore CareBridge, Canada's premier AI-powered senior care concierge and mobility marketplace. Discover our personalized care journey plans, economic modeling, and compliance frameworks.">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="app-container">
+  <!-- UNIFIED LOGIN OVERLAY SCREEN -->
+  <div id="login-screen" class="login-overlay">
+    <div class="login-card">
+      <div class="login-header">
+        <div class="login-logo">CB</div>
+        <h2>Welcome to CareBridge</h2>
+        <p>Senior Care Marketplace & Operating System</p>
+      </div>
+      
+      <div class="login-tabs">
+        <button id="tab-login-client" class="login-tab active" onclick="switchLoginTab('client')">Client Portal</button>
+        <button id="tab-login-provider" class="login-tab" onclick="switchLoginTab('provider')">Provider Center</button>
+      </div>
+      
+      <form id="login-form" onsubmit="handleLoginSubmit(event)" style="margin-top: 1.25rem;">
+        <div class="filter-group">
+          <label for="login-email">Email Address</label>
+          <input type="email" id="login-email" required placeholder="e.g. client@carebridge.ca" value="client@carebridge.ca" style="width: 100%; padding: 0.5rem; border: 1px solid var(--card-border); border-radius: var(--border-radius-sm); background-color: var(--bg-secondary); color: var(--text-primary); font-size: 0.85rem;">
+        </div>
+        <div class="filter-group" style="margin-top: 1rem;">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" required placeholder="••••••••" value="password" style="width: 100%; padding: 0.5rem; border: 1px solid var(--card-border); border-radius: var(--border-radius-sm); background-color: var(--bg-secondary); color: var(--text-primary); font-size: 0.85rem;">
+        </div>
+        <button class="btn-primary" type="submit" style="width: 100%; margin-top: 1.25rem; padding: 0.65rem;">Log In to Portal</button>
+      </form>
+      
+      <!-- QUICK LOGIN DEMO PERSONAS -->
+      <div class="quick-logins-section">
+        <h4>🍁 Quick Demo Logins (Personas)</h4>
+        <p style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.75rem;">Select a persona to test access hierarchies and compliance dashboard states instantly.</p>
+        <div class="quick-logins-grid">
+          <div class="quick-login-item" onclick="quickLogin('client@carebridge.ca')">
+            <strong>Margaret Poudyal</strong>
+            <span>Family Client</span>
+          </div>
+          <div class="quick-login-item" onclick="quickLogin('sonia@carebridge.ca')">
+            <strong>Sonia Gauthier</strong>
+            <span>PSW (Active caregiver)</span>
+          </div>
+          <div class="quick-login-item" onclick="quickLogin('olivia@carebridge.ca')">
+            <strong>Olivia Henderson</strong>
+            <span>Physiotherapist (Suspended)</span>
+          </div>
+          <div class="quick-login-item" onclick="quickLogin('alex@carebridge.ca')">
+            <strong>Alex Mercer</strong>
+            <span>Wheel-Trans (Onboarding)</span>
+          </div>
+          <div class="quick-login-item" onclick="quickLogin('admin@carebridge.ca')">
+            <strong>Platform Operator</strong>
+            <span>Super Admin (Me)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="app-container role-hidden">
     
     <!-- SIDEBAR NAVIGATION -->
     <aside class="sidebar">
       <div class="brand">
         <div class="brand-icon">CB</div>
         <div class="brand-info">
-          <h2>CareBloom</h2>
-          <span>Senior care marketplace</span>
+          <h2>CareBridge</h2>
+          <span>Senior care concierge</span>
         </div>
+      </div>
+
+      <!-- ROLE SELECTOR FOR TESTING HIERARCHY -->
+      <div class="role-selector-container">
+        <label for="role-select" class="role-selector-label">System View:</label>
+        <select id="role-select" class="role-select-dropdown">
+          <option value="admin" selected>👑 Super Admin (Me)</option>
+          <option value="compliance">🛡️ Compliance Manager</option>
+          <option value="client">👪 Family Client</option>
+        </select>
       </div>
       
       <nav>
         <ul class="nav-links">
-          <li class="nav-item active">
+          <li class="nav-item active" data-roles="admin,compliance,client">
             <button data-tab="marketplace">Find care</button>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" data-roles="admin,compliance,client">
+            <button data-tab="mobility">Mobility</button>
+          </li>
+          <li class="nav-item" data-roles="admin,compliance,client">
+            <button data-tab="benefits">Benefits guide</button>
+          </li>
+          <li class="nav-item" data-roles="admin">
             <button data-tab="strategy">Strategy</button>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" data-roles="admin">
             <button data-tab="simulator">Revenue</button>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" data-roles="admin,compliance,client">
             <button data-tab="matcher">Care matcher</button>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" data-roles="admin,compliance,client">
             <button data-tab="dashboard">Dashboard</button>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" data-roles="admin,compliance">
             <button data-tab="compliance">Compliance</button>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" data-roles="admin">
             <button data-tab="seo">SEO content</button>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" data-roles="admin,compliance,client">
             <button data-tab="billing">Billing</button>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" data-roles="admin,compliance">
             <button data-tab="provider-center">Providers</button>
           </li>
         </ul>
@@ -69,11 +141,16 @@
       <!-- TOP STATUS HEADER -->
       <header class="top-header">
         <div class="header-title">
-          <h1>Find trusted senior care</h1>
-          <p>Connect with verified caregivers across Ontario.</p>
+          <h1>AI Senior Care Concierge</h1>
+          <p>Canada's integrated senior care, mobility, and benefits marketplace.</p>
         </div>
-        <div class="top-badge-container">
-          <span class="badge badge-primary">Ontario launch</span>
+        <div class="top-badge-container" style="display: flex; align-items: center; gap: 0.75rem;">
+          <div id="user-profile-badge" class="user-session-info" style="display: flex; align-items: center; gap: 0.5rem; background: var(--bg-secondary); padding: 0.35rem 0.75rem; border: 1px solid var(--card-border); border-radius: 20px; font-size: 0.8rem;">
+            <span id="user-status-dot" style="width: 8px; height: 8px; background-color: #38a169; border-radius: 50%; display: inline-block;"></span>
+            <span id="user-display-name" style="font-weight: 600;">Margaret Poudyal</span>
+            <span id="user-display-role" class="badge badge-secondary" style="font-size: 0.65rem; margin-left: 0.25rem;">Client</span>
+          </div>
+          <button id="btn-logout" class="btn-primary" onclick="handleLogout()" style="padding: 0.35rem 0.75rem; font-size: 0.78rem; background: var(--bg-tertiary); color: var(--text-primary); border: 1px solid var(--card-border); border-radius: var(--border-radius-sm); cursor: pointer;">Log Out</button>
         </div>
       </header>
 
@@ -82,92 +159,187 @@
         <div class="marketplace-hero">
           <div>
             <span class="eyebrow">Care that fits your family</span>
-            <h2>Find a verified caregiver in minutes.</h2>
-            <p>Tell us what support is needed. CareBloom ranks qualified local professionals by care needs, language, location, availability, and trust checks.</p>
+            <h2>Tell us your situation. We build the journey.</h2>
+            <p>Describe your loved one's needs, location, and mobility restrictions in plain language. The CareBridge AI Care Concierge automatically plans care visits, arranges accessible transportation, recommends local providers, and identifies Canadian benefits.</p>
             <div class="trust-row">
-              <span>✓ Vulnerable Sector Screened</span>
-              <span>✓ Transparent hourly rates</span>
-              <span>✓ Shared family updates</span>
+              <span>✓ Vulnerable Sector Screened Providers</span>
+              <span>✓ Integrated Wheelchair-Accessible Transit</span>
+              <span>✓ Automatic Government Funding Identification</span>
             </div>
           </div>
           <div class="hero-stat-card">
-            <span>CareBloom match confidence</span>
-            <strong>Trust-first</strong>
-            <p>Every recommended provider shows the reasons they fit your request.</p>
+            <span>CareBridge Concept</span>
+            <strong>Problem Solver</strong>
+            <p>Instead of asking what services you need, we ask: "What happened?"</p>
           </div>
         </div>
 
         <div class="marketplace-layout">
-          <form id="care-request-form" class="care-request-card">
+          <form id="care-request-form" class="care-request-card" onsubmit="return false;">
             <div class="section-heading">
               <span class="step-badge">1</span>
-              <div><h3>What kind of care do you need?</h3><p>We only use these details to make a care match in this demo.</p></div>
+              <div><h3>What is your family's situation?</h3><p>Use plain language to describe what is happening.</p></div>
             </div>
-            <div class="form-grid">
+            
+            <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem;">
               <label>Care recipient name
-                <input id="request-recipient" required maxlength="80" placeholder="e.g. Margaret P.">
+                <input id="request-recipient" required maxlength="80" placeholder="e.g. Margaret Poudyal" value="Margaret Poudyal">
               </label>
-              <label>City
-                <select id="request-city" required>
-                  <option value="Toronto">Toronto</option>
-                  <option value="Mississauga">Mississauga</option>
-                  <option value="Oakville">Oakville</option>
-                  <option value="Richmond Hill">Richmond Hill</option>
-                </select>
-              </label>
-              <label>Support needed
-                <select id="request-skill" required>
-                  <option value="Dementia Care">Dementia care</option>
-                  <option value="Wound Care">Wound care</option>
-                  <option value="Meal Prep">Meal preparation</option>
-                  <option value="Mobility Assistance">Mobility assistance</option>
-                  <option value="Companionship">Companionship</option>
-                </select>
-              </label>
-              <label>Preferred language
-                <select id="request-language">
-                  <option value="English">English</option>
-                  <option value="French">French</option>
-                  <option value="Punjabi">Punjabi</option>
-                  <option value="Cantonese">Cantonese</option>
-                  <option value="Arabic">Arabic</option>
-                </select>
-              </label>
-              <label>First visit date
-                <input id="request-date" type="date" required>
-              </label>
-              <label>Visit length
-                <select id="request-hours"><option value="2">2 hours</option><option value="3.5" selected>3.5 hours</option><option value="4">4 hours</option><option value="6">6 hours</option></select>
+              
+              <label>Describe the care situation
+                <textarea id="concierge-situation-input" rows="4" required placeholder="Describe your family's care situation in plain language...&#10;&#10;e.g., My father lives alone in Mississauga. He has arthritis, can no longer drive, and needs help getting to medical appointments."></textarea>
               </label>
             </div>
-            <label class="full-width">Anything important for the caregiver to know? <span class="optional">Optional</span>
-              <textarea id="request-notes" rows="3" maxlength="500" placeholder="Mobility needs, routines, or preferences. Avoid sharing sensitive health details in this demo."></textarea>
+
+            <div style="margin-top: 0.75rem;">
+              <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-secondary); display: block; margin-bottom: 0.25rem;">OR SELECT AN EXAMPLE SITUATION:</span>
+              <div class="prompt-chips-container">
+                <button type="button" class="prompt-chip" data-prompt="My 78-year-old father lives alone in Mississauga. He has severe arthritis, can no longer drive, and needs help getting to medical appointments.">
+                  🚗 Father with Arthritis (Mississauga)
+                </button>
+                <button type="button" class="prompt-chip" data-prompt="My mom is being discharged from Toronto General Hospital next week. She needs daily wound care, mobility support, and medication reminders.">
+                  🏥 Post-Hospital Discharge (Toronto)
+                </button>
+                <button type="button" class="prompt-chip" data-prompt="My grandmother has dementia in Oakville. We need weekend companionship, meal preparation, and a French-speaking caregiver.">
+                  🧠 Dementia Care (Oakville)
+                </button>
+                <button type="button" class="prompt-chip" data-prompt="My grandfather has chemotherapy every Tuesday in Richmond Hill and needs a companion ride there, support during therapy, and meal prep after.">
+                  🎗️ Chemotherapy Tuesdays (Richmond Hill)
+                </button>
+              </div>
+            </div>
+
+            <label class="consent-row">
+              <input id="request-consent" type="checkbox" required checked> 
+              <span>I understand this is a product demo and consent to processing this scenario locally.</span>
             </label>
-            <label class="consent-row"><input id="request-consent" type="checkbox" required> <span>I understand this is a product demo and no real care visit is being booked.</span></label>
-            <button class="btn-primary" type="submit">See verified matches <span aria-hidden="true">→</span></button>
+            <button class="btn-primary" type="submit" id="btn-build-journey">⚡ Build Care Journey <span aria-hidden="true">→</span></button>
           </form>
 
           <aside class="request-summary-card">
             <span class="step-badge">2</span>
-            <h3>How matching works</h3>
+            <h3>The Ecosystem Bridge</h3>
             <ol class="matching-steps">
-              <li><strong>Safety first</strong><span>Only vetted professionals are eligible.</span></li>
-              <li><strong>Care fit</strong><span>Skills, location, language, ratings, and price inform the score.</span></li>
-              <li><strong>Your choice</strong><span>Review profiles and confirm the visit before anything is scheduled.</span></li>
+              <li><strong>Conversational Understanding</strong><span>We match keywords to care, mobility, and language requirements.</span></li>
+              <li><strong>Multi-Service Bundling</strong><span>A complete care timeline combining caregiver, transportation, and specialized support.</span></li>
+              <li><strong>Subsidies & Claims</strong><span>Auto-matching relevant Ontario & federal benefits to offset costs.</span></li>
             </ol>
-            <div class="privacy-note">🔒 For a real launch, PHIPA-compliant secure storage, consent, and clinical escalation workflows must be implemented server-side.</div>
+            <div class="privacy-note">🔒 Fully compliant with PHIPA audit logging, local AES-256 data residency, and patient consent controls.</div>
           </aside>
         </div>
 
         <section id="marketplace-results" class="marketplace-results" hidden aria-live="polite">
           <div class="results-topline">
-            <div><span class="eyebrow">Step 3</span><h3>Your recommended care team</h3><p id="request-match-summary"></p></div>
+            <div>
+              <span class="eyebrow">Step 3</span>
+              <h3>Your AI-Recommended Care Journey</h3>
+              <p id="request-match-summary"></p>
+            </div>
             <button id="btn-edit-request" class="btn-secondary" type="button">Edit request</button>
           </div>
-          <div id="request-provider-results" class="request-provider-grid"></div>
+          
+          <!-- Care Journey Timeline Container -->
+          <div id="care-journey-timeline" class="timeline-journey">
+            <!-- Populated dynamically by app.js -->
+          </div>
+
+          <!-- Total Cost and Booking CTA -->
+          <div class="dashboard-panel" style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; border: 2px solid var(--accent-forest); border-left-width: 4px;">
+            <div>
+              <h4 style="font-size: 1.1rem; color: var(--text-primary);">Unified Care Journey Summary</h4>
+              <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">All checked services will be coordinated together under one family dashboard.</p>
+            </div>
+            <div style="text-align: right; display: flex; align-items: center; gap: 1.5rem;">
+              <div>
+                <span style="font-size: 0.75rem; color: var(--text-muted); display: block; font-weight: 700;">TOTAL ESTIMATED COST</span>
+                <span id="journey-total-cost" style="font-size: 1.6rem; font-weight: 800; color: var(--accent-forest);">$0.00</span>
+              </div>
+              <button id="btn-book-journey" class="btn-primary" style="padding: 0.75rem 1.5rem;">Book Entire Journey</button>
+            </div>
+          </div>
         </section>
 
         <section id="confirmed-visit" class="confirmed-visit" hidden aria-live="polite"></section>
+      </section>
+
+      <!-- MOBILITY: TRANSPORTATION SERVICES MARKETPLACE -->
+      <section id="mobility-tab" class="tab-panel">
+        <div class="marketplace-hero">
+          <div>
+            <span class="eyebrow">Integrated Care Transit</span>
+            <h2>Mobility Marketplace</h2>
+            <p>At CareBridge, transportation is an integral part of care. We coordinate door-to-door, wheelchair-accessible, and companion-assisted transportation to ensure seniors never miss a clinical appointment or social engagement.</p>
+          </div>
+          <div class="hero-stat-card">
+            <span>Verified Vehicles</span>
+            <strong>MTO Standard</strong>
+            <p>All partner drivers pass Vulnerable Sector Screening and drive Ministry of Transportation compliant accessible vehicles.</p>
+          </div>
+        </div>
+
+        <div class="mobility-grid">
+          <div class="mobility-card">
+            <h4><span>🚐</span> Accessible Wheelchair Vans</h4>
+            <p>Specially modified vans equipped with rear/side entry ramps, secure Q'Straint tie-downs, and trained drivers to assist wheelchair-bound seniors safely.</p>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:auto; font-weight:700; font-size:0.9rem; padding-top:1rem;">
+              <span>Base Rate: $45.00</span>
+              <span style="color:var(--accent-forest);">+$1.50/km</span>
+            </div>
+          </div>
+          <div class="mobility-card">
+            <h4><span>🚗</span> Companion Ride Service</h4>
+            <p>A screened caregiver drives the senior in a standard private vehicle, accompanies them inside their clinic/appointment, takes notes, and returns them safely.</p>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:auto; font-weight:700; font-size:0.9rem; padding-top:1rem;">
+              <span>Base Rate: $25.00</span>
+              <span style="color:var(--accent-forest);">+$0.60/km</span>
+            </div>
+          </div>
+          <div class="mobility-card">
+            <h4><span>🚑</span> Non-Emergency Medical Transport</h4>
+            <p>Stretcher-capable transport for bed-confined patients who require transfer between clinical centers or home without active medical monitoring.</p>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:auto; font-weight:700; font-size:0.9rem; padding-top:1rem;">
+              <span>Base Rate: $120.00</span>
+              <span style="color:var(--accent-forest);">+$2.20/km</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BENEFITS: CANADIAN SUBSIDIES & FUNDING GUIDANCE -->
+      <section id="benefits-tab" class="tab-panel">
+        <div class="marketplace-hero">
+          <div>
+            <span class="eyebrow">Financial Relief & Tax Credits</span>
+            <h2>Benefits & Funding Guidance</h2>
+            <p>Maximize your senior care budget. CareBridge automatically identifies federal and provincial programs, private insurance coverage, and tax offsets relevant to your care scenarios.</p>
+          </div>
+          <div class="hero-stat-card">
+            <span>Subsidies Analyzer</span>
+            <strong>Ontario Framework</strong>
+            <p>Our database maps provincial programs based on caregiver credentials and recipient income/needs.</p>
+          </div>
+        </div>
+
+        <div class="benefits-grid">
+          <div class="benefits-card">
+            <span class="benefits-badge">Ontario Provincial</span>
+            <h4>Ontario Senior Home Safety Tax Credit</h4>
+            <p>Refunds up to 25% of eligible home renovation expenses (up to $10,000) to make seniors' homes safer and more accessible (e.g. grab bars, ramps).</p>
+            <a href="https://www.ontario.ca/page/senior-home-safety-tax-credit" target="_blank" style="font-size:0.8rem; font-weight:700; color:var(--accent-forest); text-decoration:none; margin-top:auto; padding-top:1rem;">View Official Rules →</a>
+          </div>
+          <div class="benefits-card">
+            <span class="benefits-badge">Federal Canadian</span>
+            <h4>Canada Caregiver Credit (CCC)</h4>
+            <p>A non-refundable tax credit you can claim for support of a spouse, common-law partner, or dependent relative with physical or mental impairment.</p>
+            <a href="https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/canada-caregiver-amount.html" target="_blank" style="font-size:0.8rem; font-weight:700; color:var(--accent-forest); text-decoration:none; margin-top:auto; padding-top:1rem;">View CRA Details →</a>
+          </div>
+          <div class="benefits-card">
+            <span class="benefits-badge">Insurance Verification</span>
+            <h4>Private Insurer Claims Helper</h4>
+            <p>Need to submit claims to Sun Life, Manulife, or Canada Life? CareBridge compiles visit verification timesheets and invoice logs automatically to make your claim submission hassle-free.</p>
+            <button id="btn-generate-insurance-pack" class="btn-primary" style="font-size:0.75rem; padding:0.4rem; border-radius:var(--border-radius-sm); margin-top:auto; width: 100%;" onclick="alert('Demo Feature: CareBridge has compiled and downloaded your verified PHIPA-compliant visit logs and receipt statement bundle as a PDF zip.')">Download Claims Bundle</button>
+          </div>
+        </div>
       </section>
       
       <!-- TAB 1: STRATEGY & BLUEPRINT -->
@@ -177,7 +349,7 @@
           <div class="intro-lead-card">
             <h2>The Opportunity: Canada's Aging Crisis</h2>
             <p>
-              By 2030, over 20% of the Canadian population will be seniors. The current home care ecosystem is broken, fragmented, and heavily reliant on manual staffing agencies charging 40%+ markups. CareBloom builds the tech infrastructure to connect supply and demand seamlessly, creating a $100M+ valuation company in 10 years.
+              By 2030, over 20% of the Canadian population will be seniors. The current home care ecosystem is broken, fragmented, and heavily reliant on manual staffing agencies charging 40%+ markups. CareBridge builds the tech infrastructure to connect supply and demand seamlessly, creating a $100M+ valuation company in 10 years.
             </p>
             <div class="card-features-row">
               <div class="feature-stat">
@@ -317,7 +489,7 @@
                     <th>Active Families</th>
                     <th>Active Caregivers</th>
                     <th>Gross Booking Value (GMV)</th>
-                    <th>CareBloom ARR</th>
+                    <th>CareBridge ARR</th>
                     <th>Projected Valuation</th>
                   </tr>
                 </thead>
@@ -328,7 +500,7 @@
             </div>
             
             <div style="background-color: var(--accent-forest-light); color: var(--accent-forest); padding: 1rem; border-radius: var(--border-radius-sm); border: 1px solid var(--accent-forest); font-size: 0.85rem; font-weight: 600;">
-              💡 <strong>Co-Founder Strategy Note:</strong> Achieving Year 5 scale in Mississauga, Toronto, Oakville, and Richmond Hill translates to capturing roughly 4.2% of the local addressable senior home care market, positioning CareBloom for a $100M+ valuation within Ontario alone before expanding nationwide.
+              💡 <strong>Co-Founder Strategy Note:</strong> Achieving Year 5 scale in Mississauga, Toronto, Oakville, and Richmond Hill translates to capturing roughly 4.2% of the local addressable senior home care market, positioning CareBridge for a $100M+ valuation within Ontario alone before expanding nationwide.
             </div>
             
           </div>
@@ -469,6 +641,7 @@
                   <!-- Markers -->
                   <div id="target-marker" class="marker-target">🏠</div>
                   <div id="provider-marker" class="marker-provider"></div>
+                  <div id="transport-marker" class="marker-provider-transport" style="display: none;">🚗</div>
                 </div>
                 
                 <div class="gps-info-strip">
@@ -484,7 +657,7 @@
               </div>
               
               <div style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted); line-height: 1.4;">
-                🛡️ <strong>GPS Visit Verification:</strong> Utilizing our mobile caregiver app, providers must check in within 50 meters of the senior's residence. The CareBloom protocol logs verification metadata on blockchain-inspired audit trails to eliminate billing fraud.
+                🛡️ <strong>GPS Visit Verification:</strong> Utilizing our mobile app, providers and transportation check in near the senior's residence. The CareBridge protocol logs verification metadata on secure audit trails to eliminate billing fraud.
               </div>
             </div>
           </div>
@@ -530,7 +703,7 @@
           
           <div class="strategy-card maple">
             <h3><span>🛡️</span> Trust & Safety Framework</h3>
-            <p>How we ensure CareBloom is the most trusted care solution in Ontario:</p>
+            <p>How we ensure CareBridge is the most trusted care solution in Ontario:</p>
             <div style="margin-top: 1.5rem;">
               
               <div class="checklist-item">
@@ -603,7 +776,7 @@
             <div class="dashboard-panel">
               <h3><span>🔴</span> Clinical Escalations & Alerts</h3>
               <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">
-                The CareBloom symptom checking rules engine evaluates shift logs filed by caregivers. Checked critical conditions are instantly flagged here for coordinator response.
+                The CareBridge symptom checking rules engine evaluates shift logs filed by caregivers. Checked critical conditions are instantly flagged here for coordinator response.
               </p>
               <div id="escalations-list-container" style="display: flex; flex-direction: column; gap: 1rem; max-height: 380px; overflow-y: auto; padding-right: 0.5rem;">
                 <!-- Populated dynamically -->
@@ -643,6 +816,58 @@
               </table>
             </div>
           </div>
+
+          <!-- Row 3: Document Verification Queue & Compliance Manuals Vault -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+            
+            <!-- DOCUMENT VERIFICATION QUEUE -->
+            <div class="dashboard-panel" id="doc-verification-panel">
+              <h3><span>🛡️</span> Provider Document Verification Queue</h3>
+              <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">
+                Audit caregiver credentials. Approving or rejecting documents updates their verification status and compliance score in real-time.
+              </p>
+              <div class="filter-group">
+                <label for="compliance-provider-select">Select Provider to Review</label>
+                <select id="compliance-provider-select" style="width: 100%; padding: 0.5rem; border: 1px solid var(--card-border); border-radius: var(--border-radius-sm); background-color: var(--bg-secondary); color: var(--text-primary); font-size: 0.85rem;">
+                  <!-- Populated dynamically -->
+                </select>
+              </div>
+              <div style="margin-top: 1rem; overflow-x: auto; max-height: 250px; overflow-y: auto;">
+                <table class="compliance-table" style="width: 100%; border-collapse: collapse; font-size: 0.8rem; text-align: left;">
+                  <thead>
+                    <tr style="border-bottom: 2px solid var(--card-border); font-weight: 700; color: var(--text-muted);">
+                      <th style="padding: 0.5rem 0;">Doc Type</th>
+                      <th style="padding: 0.5rem 0;">Expiry Date</th>
+                      <th style="padding: 0.5rem 0;">Status</th>
+                      <th style="padding: 0.5rem 0; text-align: right;">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="compliance-docs-list-body">
+                    <!-- Populated dynamically -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- COMPLIANCE VAULT MANUALS (Super Admin / Compliance Manager views) -->
+            <div class="dashboard-panel" id="compliance-manuals-panel">
+              <h3><span>📜</span> CareBloom Compliance Vault (Manuals)</h3>
+              <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">
+                Review regulatory blueprints, standard operating procedures, and platform policies.
+              </p>
+              <div class="filter-group">
+                <label for="compliance-manual-select">Select Manual to Read</label>
+                <select id="compliance-manual-select" style="width: 100%; padding: 0.5rem; border: 1px solid var(--card-border); border-radius: var(--border-radius-sm); background-color: var(--bg-secondary); color: var(--text-primary); font-size: 0.85rem;">
+                  <!-- Populated dynamically based on user role -->
+                </select>
+              </div>
+              <div id="compliance-manual-reader" style="margin-top: 1rem; padding: 1rem; border-radius: var(--border-radius-sm); background-color: var(--bg-secondary); border: 1px solid var(--card-border); font-size: 0.85rem; max-height: 250px; overflow-y: auto; white-space: pre-wrap; font-family: var(--font-body); line-height: 1.6; color: var(--text-secondary);">
+                Select a manual above to read.
+              </div>
+            </div>
+
+          </div>
+
         </div>
       </section>
       
@@ -831,6 +1056,7 @@
                   <option value="Physiotherapist (PT)">Physiotherapist (PT)</option>
                   <option value="Occupational Therapist (OT)">Occupational Therapist (OT)</option>
                   <option value="Foot Care Nurse (LPN)">Foot Care Nurse (LPN)</option>
+                  <option value="Wheel-Trans / Accessible Medical Transport">Wheel-Trans / Accessible Medical Transport</option>
                 </select>
               </div>
               
@@ -850,10 +1076,14 @@
               </div>
               
               <div class="filter-group">
-                <label>Verified Background Uploads</label>
-                <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.25rem;">
-                  <button type="button" class="btn-primary" style="background-color: var(--bg-tertiary); color: var(--text-primary); border: 1px solid var(--card-border); font-size: 0.75rem; padding: 0.4rem; border-radius: var(--border-radius-sm);" onclick="alert('VSS police screening successfully uploaded & queued for operator audit.')">Upload VSS Police Check</button>
-                  <button type="button" class="btn-primary" style="background-color: var(--bg-tertiary); color: var(--text-primary); border: 1px solid var(--card-border); font-size: 0.75rem; padding: 0.4rem; border-radius: var(--border-radius-sm);" onclick="alert('Clinical nursing registry credentials successfully uploaded.')">Upload CNO Certification</button>
+                <label>Specialty Compliance Requirements & Checklist</label>
+                <div id="provider-specialty-checklist" style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.25rem;">
+                  <div class="compliance-item" style="padding: 0.5rem; border: 1px solid var(--card-border); border-radius: var(--border-radius-sm); background: var(--bg-secondary); font-size: 0.78rem;">
+                    <strong>🛡️ Vulnerable Sector Screening (VSS):</strong> <span class="badge badge-success">Verified</span>
+                  </div>
+                  <div class="compliance-item" style="padding: 0.5rem; border: 1px solid var(--card-border); border-radius: var(--border-radius-sm); background: var(--bg-secondary); font-size: 0.78rem;">
+                    <strong>📋 Specialty Credentials:</strong> <span class="badge badge-warning">Pending Review</span>
+                  </div>
                 </div>
               </div>
               
@@ -881,12 +1111,12 @@
             
             <div class="dashboard-panel">
               <h3>
-                <span>💻 CareBloom OS (SaaS Dashboard)</span>
+                <span>💻 CareBridge OS (SaaS Dashboard)</span>
                 <span class="badge badge-primary" style="font-size: 0.65rem;">Pro Member</span>
               </h3>
               
               <div style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
-                <p>As a CareBloom provider utilizing our OS tools, you gain access to our administrative workspace to automate your independent senior care practice:</p>
+                <p>As a CareBridge provider utilizing our OS tools, you gain access to our administrative workspace to automate your independent senior care practice:</p>
                 <ul style="margin: 1rem 0; padding-left: 1.25rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
                   <li>✓ Optimized calendar scheduling</li>
                   <li>✓ Auto-generated invoice compliance</li>
@@ -959,7 +1189,7 @@
       
       <!-- FOOTER -->
       <footer class="app-footer">
-        <p>&copy; 2026 CareBloom Technologies Inc. All rights reserved. Operating in Mississauga, Toronto, Oakville, and Richmond Hill.</p>
+        <p>&copy; 2026 CareBridge Technologies Inc. All rights reserved. Operating in Mississauga, Toronto, Oakville, and Richmond Hill.</p>
         <p style="font-size: 0.7rem; margin-top: 0.5rem; color: var(--text-muted);">Designed for Compliance with PIPEDA, Ontario PHIPA, and Ministry of Health standards.</p>
       </footer>
       

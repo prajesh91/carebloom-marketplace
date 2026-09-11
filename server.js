@@ -317,6 +317,66 @@ const server = http.createServer(async (request, response) => {
         }));
       }
 
+      if (pathname === '/api/auth/login' && request.method === 'POST') {
+        const { email } = await getRequestBody(request);
+
+        const users = {
+          'client@carebridge.ca': {
+            email: 'client@carebridge.ca',
+            name: 'Margaret Poudyal',
+            role: 'client',
+            roleLabel: 'Family Client',
+            specialty: 'Client',
+            status: 'Active'
+          },
+          'sonia@carebridge.ca': {
+            email: 'sonia@carebridge.ca',
+            name: 'Sonia Gauthier',
+            role: 'compliance',
+            roleLabel: 'PSW Caregiver',
+            specialty: 'PSW (Personal Support Worker)',
+            status: 'Active'
+          },
+          'olivia@carebridge.ca': {
+            email: 'olivia@carebridge.ca',
+            name: 'Olivia Henderson',
+            role: 'compliance',
+            roleLabel: 'Physiotherapist',
+            specialty: 'Physiotherapist (PT)',
+            status: 'Suspended (Expired Insurance)'
+          },
+          'alex@carebridge.ca': {
+            email: 'alex@carebridge.ca',
+            name: 'Alex Mercer',
+            role: 'compliance',
+            roleLabel: 'Wheel-Trans Driver',
+            specialty: 'Wheel-Trans / Accessible Medical Transport',
+            status: 'Draft Onboarding'
+          },
+          'admin@carebridge.ca': {
+            email: 'admin@carebridge.ca',
+            name: 'Platform Operator',
+            role: 'admin',
+            roleLabel: 'Super Admin (Me)',
+            specialty: 'Super Admin',
+            status: 'Active'
+          }
+        };
+
+        const targetEmail = (email || '').toLowerCase().trim();
+        const user = users[targetEmail];
+
+        if (!user) {
+          logAuditEntry('AUTH_FAILED', 'User Login', `Failed login attempt for unknown email: ${email}`, clientIp);
+          setApiHeaders(response, 401);
+          return response.end(JSON.stringify({ error: "Invalid email credentials." }));
+        }
+
+        logAuditEntry('AUTH_SUCCESS', 'User Login', `User authenticated as ${user.name} (${user.roleLabel})`, clientIp);
+        setApiHeaders(response);
+        return response.end(JSON.stringify({ success: true, user }));
+      }
+
       if (pathname === '/api/care-requests' && request.method === 'POST') {
         const { recipient, city, skill, language, date, hours, notes, consentGranted } = await getRequestBody(request);
         
